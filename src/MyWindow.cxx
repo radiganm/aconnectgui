@@ -1,4 +1,4 @@
-#include "Window.hxx"
+#include "MyWindow.hxx"
 #include "Connector.hxx"
 #include "Port.hxx"
 #include <FL/Fl.H>
@@ -16,7 +16,7 @@ static Fl_Pixmap pixmap_alsalogo(alsalogo_xpm);
 
 int aconnect_main(int argc,char** argv);
 
-void Window::Connect(int client,int port,int clientB,int portB)
+void MyWindow::Connect(int client,int port,int clientB,int portB)
 {
 	Connector *a = 0,*b = 0;
 	
@@ -29,7 +29,7 @@ void Window::Connect(int client,int port,int clientB,int portB)
 	}
 }		
 
-void Window::Disconnect(
+void MyWindow::Disconnect(
 	int fromClientId,int fromPortId,int toClientId,int toPortId)
 {
 	Connection* c = mConnections->Find(
@@ -45,7 +45,7 @@ void Window::Disconnect(
 	}
 }
 
-void Window::Disconnect(Connection* c)
+void MyWindow::Disconnect(Connection* c)
 {
 	mConnections->remove(c);
 	mConnections->redraw();
@@ -58,7 +58,7 @@ void Window::Disconnect(Connection* c)
 	mConnections->redraw();
 }
 
-void Window::Connect(Connector* a,Connector* b)
+void MyWindow::Connect(Connector* a,Connector* b)
 {
 	a->Unselect();
 	b->Unselect();
@@ -80,14 +80,14 @@ void Window::Connect(Connector* a,Connector* b)
 	mConnections->Unclutter();
 }
 
-int Window::IsLegal(Connector* a,Connector* b)
+int MyWindow::IsLegal(Connector* a,Connector* b)
 {
 	return a->Type()!=b->Type();
 }
 
-Client* Window::AddClient(snd_seq_client_info_t* cinfo)
+Client* MyWindow::AddClient(snd_seq_client_info_t* cinfo)
 {
-	// some of this code should be in Window
+	// some of this code should be in MyWindow
 	Client* c= mClients->FindClient(snd_seq_client_info_get_client(cinfo));
 	
 	if (c) {
@@ -107,9 +107,9 @@ Client* Window::AddClient(snd_seq_client_info_t* cinfo)
 	}
 	return mCurClient;
 }
-Port* Window::AddPort(snd_seq_port_info_t* pinfo)
+Port* MyWindow::AddPort(snd_seq_port_info_t* pinfo)
 {
-	// some of this code should be in Window
+	// some of this code should be in MyWindow
 	int dy = mCurClient->y()+mCurClient->h();
 	mCurPort = mCurClient->AddPort(
 		strdup(snd_seq_port_info_get_name(pinfo)),
@@ -129,7 +129,7 @@ Port* Window::AddPort(snd_seq_port_info_t* pinfo)
 	return mCurPort;
 }
 
-bool Window::HandleConnect(Connector* a,Connector* b)
+bool MyWindow::HandleConnect(Connector* a,Connector* b)
 {
 	int argc;
 	char* argv[16];
@@ -147,7 +147,7 @@ bool Window::HandleConnect(Connector* a,Connector* b)
 	return (aconnect_main(argc,argv)==0);
 }
 
-bool Window::HandleDisconnect(Connection* c)
+bool MyWindow::HandleDisconnect(Connection* c)
 {
 	int argc;
 	char* argv[16];
@@ -169,7 +169,7 @@ bool Window::HandleDisconnect(Connection* c)
 	return (aconnect_main(argc,argv)==0);
 }
 
-Window::Window():Fl_Window(300,33,"ALSA Sequencer")
+MyWindow::MyWindow():Fl_Window(300,33,"ALSA Sequencer")
 {
 	mClients = new Clients(0,33,140,0);
 	mConnections = new Connections(140,33,160,0);
@@ -253,13 +253,13 @@ Window::Window():Fl_Window(300,33,"ALSA Sequencer")
 	snd_seq_nonblock(mHandle, 1);
 }
 
-Window::~Window()
+MyWindow::~MyWindow()
 {
 	snd_seq_close(mHandle);
 }
 
 
-void Window::Timeout(void)
+void MyWindow::Timeout(void)
 {
 	int count;
 	snd_seq_event_t *ev;
@@ -343,10 +343,10 @@ void Window::Timeout(void)
 		}
 	} while (ev);
 
-	Fl::add_timeout(0.1,Window::TimeoutStatic,this);
+	Fl::add_timeout(0.1,MyWindow::TimeoutStatic,this);
 }
 
-Window* patchbay = 0;
+MyWindow* patchbay = 0;
 
 main()
 {
@@ -355,7 +355,7 @@ main()
 	
 	Fl::get_system_colors();
 	
-	patchbay = new Window;
+	patchbay = new MyWindow;
 
 	/* NB the concept of input of aconnect and the  classes is reverse...
 	*/
@@ -376,7 +376,7 @@ main()
 
 	patchbay->show();
 
-	Fl::add_timeout(0.1,Window::TimeoutStatic,patchbay);
+	Fl::add_timeout(0.1,MyWindow::TimeoutStatic,patchbay);
 
 	Fl::run();
 }

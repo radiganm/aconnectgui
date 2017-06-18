@@ -1,7 +1,7 @@
 #include "Connection.hxx"
 #include "Connector.hxx"
 #include "Port.hxx"
-#include "Window.hxx"
+#include "MyWindow.hxx"
 
 #include <FL/fl_draw.H>
 #include <FL/Fl.H>
@@ -25,7 +25,7 @@ void Connection::Set(Connector* a, Connector* b)
 
 int Connection::handle(int e)
 {
-	Window* window = (Window*) parent()->parent();
+	MyWindow* window = (MyWindow*) parent()->parent();
 	
 	if (e==FL_PUSH) {
 		if (window->IsDisconnecting()) {

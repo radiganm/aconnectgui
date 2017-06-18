@@ -1,4 +1,4 @@
-#include "Window.hxx"
+#include "MyWindow.hxx"
 #include "Client.hxx"
 #include "Connection.hxx"
 #include "Port.hxx"
@@ -158,7 +158,7 @@ int Clients::handle(int e)
 	static Connector* a,*b,*prev;
 	static Connection* c=0;
 
-	Window* patchbay = ((Window*)parent());
+	MyWindow* patchbay = ((MyWindow*)parent());
 	Connections* connections = patchbay->GetConnections();
 
 	if (e==FL_PUSH && patchbay->IsConnecting()) {

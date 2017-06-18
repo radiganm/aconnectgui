@@ -12,8 +12,8 @@ Connector.cxx \
 ConnectorType.hxx \
 Port.hxx \
 Port.cxx \
-Window.hxx \
-Window.cxx \
+MyWindow.hxx \
+MyWindow.cxx \
 Layout.hxx \
 aconnect.cxx
 

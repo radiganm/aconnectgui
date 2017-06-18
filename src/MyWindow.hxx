@@ -1,5 +1,5 @@
-#ifndef __Window__
-#define __Window__
+#ifndef __MyWindow__
+#define __MyWindow__
 
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
@@ -12,7 +12,7 @@
 
 #include <alsa/asoundlib.h>
 
-class Window:public Fl_Window
+class MyWindow:public Fl_Window
 {
 private:
 	Connections* mConnections;
@@ -32,8 +32,8 @@ private:
 	int mClientId;
 
 public:
-	Window();
-	~Window();
+	MyWindow();
+	~MyWindow();
 
 	Connections* GetConnections(void) { return mConnections; }
 
@@ -74,7 +74,7 @@ public:
 	
 	static void TimeoutStatic(void* ptr)
 	{
-		((Window*)ptr)->Timeout();
+		((MyWindow*)ptr)->Timeout();
 	}
 	
 	void Timeout(void);

@@ -29,8 +29,8 @@
 #include <alsa/asoundlib.h>
 
 #ifdef ACONNECT_GUI
-#include "Window.hxx"
-extern Window* patchbay;
+#include "MyWindow.hxx"
+extern MyWindow* patchbay;
 #endif
 
 static void error_handler(const char *file, int line, const char *function, int err, const char *fmt, ...)
@@ -125,7 +125,7 @@ static void list_each_subs(snd_seq_t *seq, snd_seq_query_subscribe_t *subs, int 
 				patchbay->FindOutput(addr->client, addr->port);
 			if (output)
 			{
-				patchbay->Window::Connect(output,patchbay->GetCurPort()->Input());
+				patchbay->MyWindow::Connect(output,patchbay->GetCurPort()->Input());
 			}
 		}
 #else
