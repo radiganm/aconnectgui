@@ -1,0 +1,2 @@
+?package(aconnectgui):needs=X11 section=Apps/Sound\
+  title="aconnectgui" command="/usr/bin/aconnectgui"

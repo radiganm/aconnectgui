@@ -1,0 +1,6 @@
+aclocal
+automake -a --foreign
+autoconf
+./configure
+make
+make install

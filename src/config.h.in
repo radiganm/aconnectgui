@@ -1,0 +1,35 @@
+/* src/config.h.in.  Generated automatically from configure.in by autoheader 2.13.  */
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you have the <FL/Fl.H> header file.  */
+#undef HAVE_FL_FL_H
+
+/* Define if you have the <alsa/asoundlib.h> header file.  */
+#undef HAVE_ALSA_ASOUNDLIB_H
+
+/* Define if you have the <getopt.h> header file.  */
+#undef HAVE_GETOPT_H
+
+/* Define if you have the <stdio.h> header file.  */
+#undef HAVE_STDIO_H
+
+/* Define if you have the <stdlib.h> header file.  */
+#undef HAVE_STDLIB_H
+
+/* Define if you have the <string.h> header file.  */
+#undef HAVE_STRING_H
+
+/* Define if you have the asound library (-lasound).  */
+#undef HAVE_LIBASOUND
+
+/* Define if you have the fltk library (-lfltk).  */
+#undef HAVE_LIBFLTK
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+
